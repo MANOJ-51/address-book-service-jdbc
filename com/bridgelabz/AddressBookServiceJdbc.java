@@ -11,12 +11,16 @@ public class AddressBookServiceJdbc {
                     ("jdbc:mysql://localhost:3306/address_book_service", "root", "Manoj@451");
             System.out.println("connection successful");
             Statement statement = connection.createStatement();
+            //updating contact
+            statement.executeUpdate("update address_book set first_name = 'navdeep' where phone_number=91213107");
+            //retrieve data
             ResultSet resultSet = statement.executeQuery("select * from address_book");
             while (resultSet.next()) {
                 System.out.println(resultSet.getString(1) + "|" + resultSet.getString(2) + "|" + resultSet.getString(3) + "|" +
                         resultSet.getString(4) + "|" + resultSet.getString(5) + "|" + resultSet.getInt(6) + "|" + resultSet.getInt(7) +
                         "|" + resultSet.getString(8) + "|" + resultSet.getString(9));
             }
+
             connection.close();
         } catch (SQLException exception) {
             exception.printStackTrace();
